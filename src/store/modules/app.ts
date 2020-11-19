@@ -1,6 +1,14 @@
 import Cookies from 'js-cookie'
 
-const state = {
+export interface IAppState {
+  device: string
+  sidebar: {
+    opened: boolean
+    withoutAnimation: boolean
+  }
+}
+
+const state: IAppState = {
   sidebar: {
     opened: Cookies.get('sidebarStatus') ? !!+Cookies.get('sidebarStatus') : true,
     withoutAnimation: false,
@@ -9,7 +17,7 @@ const state = {
 }
 
 const mutations = {
-  TOGGLE_SIDEBAR: state => {
+  TOGGLE_SIDEBAR: (state: IAppState) => {
     state.sidebar.opened = !state.sidebar.opened
     state.sidebar.withoutAnimation = false
     if (state.sidebar.opened) {
@@ -18,12 +26,12 @@ const mutations = {
       Cookies.set('sidebarStatus', 0)
     }
   },
-  CLOSE_SIDEBAR: (state, withoutAnimation) => {
+  CLOSE_SIDEBAR: (state: IAppState, withoutAnimation: boolean) => {
     Cookies.set('sidebarStatus', 0)
     state.sidebar.opened = false
     state.sidebar.withoutAnimation = withoutAnimation
   },
-  TOGGLE_DEVICE: (state, device) => {
+  TOGGLE_DEVICE: (state: IAppState, device: string) => {
     state.device = device
   },
 }
@@ -35,7 +43,7 @@ const actions = {
   closeSideBar({ commit }, { withoutAnimation }) {
     commit('CLOSE_SIDEBAR', withoutAnimation)
   },
-  toggleDevice({ commit }, device) {
+  toggleDevice({ commit }, device: string) {
     commit('TOGGLE_DEVICE', device)
   },
 }

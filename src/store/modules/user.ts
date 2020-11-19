@@ -2,6 +2,12 @@ import { login, logout, getInfo } from '@/api/user'
 import { getToken, setToken, removeToken } from '@/utils/auth'
 import { resetRouter } from '@/router'
 
+export interface IUserState {
+  token: string
+  name: string
+  avatar: string
+}
+
 const getDefaultState = () => {
   return {
     token: getToken(),
@@ -10,19 +16,19 @@ const getDefaultState = () => {
   }
 }
 
-const state = getDefaultState()
+const state: IUserState = getDefaultState()
 
 const mutations = {
-  RESET_STATE: (state) => {
+  RESET_STATE: (state: IUserState) => {
     Object.assign(state, getDefaultState())
   },
-  SET_TOKEN: (state, token) => {
+  SET_TOKEN: (state: IUserState, token: string) => {
     state.token = token
   },
-  SET_NAME: (state, name) => {
+  SET_NAME: (state: IUserState, name: string) => {
     state.name = name
   },
-  SET_AVATAR: (state, avatar) => {
+  SET_AVATAR: (state: IUserState, avatar: string) => {
     state.avatar = avatar
   },
 }

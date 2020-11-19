@@ -5,10 +5,10 @@
       <el-menu
         :default-active="activeMenu"
         :collapse="isCollapse"
-        :background-color="variables.menuBg"
-        :text-color="variables.menuText"
+        :background-color="variableSty.menuBg"
+        :text-color="variableSty.menuText"
         :unique-opened="false"
-        :active-text-color="variables.menuActiveText"
+        :active-text-color="variableSty.menuActiveText"
         :collapse-transition="false"
         mode="vertical"
       >
@@ -23,38 +23,47 @@
   </div>
 </template>
 
-<script>
-import { defineComponent } from 'vue'
-import { mapGetters } from 'vuex'
+<script lang="ts">
+import { defineComponent, computed } from 'vue'
 import Logo from './Logo.vue'
 import SidebarItem from './SidebarItem.vue'
 import variables from '@/styles/variables.scss'
+import { useStore } from 'vuex'
+import { useRouter, useRoute } from 'vue-router'
 
 export default defineComponent({
   components: { SidebarItem, Logo },
-  computed: {
-    ...mapGetters(['sidebar']),
-    routes() {
-      return this.$router.options.routes
-    },
-    activeMenu() {
-      const route = this.$route
+  setup() {
+    const router = useRouter()
+    const route = useRoute()
+    const store = useStore()
+
+    const routes = computed(() => {
+      return router.options.routes
+    })
+
+    const activeMenu = computed(() => {
       const { meta, path } = route
       // if set path, the sidebar will highlight the path you set
       if (meta.activeMenu) {
         return meta.activeMenu
       }
       return path
-    },
-    showLogo() {
-      return this.$store.state.settings.sidebarLogo
-    },
-    variables() {
+    })
+
+    const showLogo = computed(() => {
+      return store.state.settings.sidebarLogo
+    })
+
+    const variableSty = computed(() => {
       return variables
-    },
-    isCollapse() {
-      return !this.sidebar.opened
-    },
+    })
+
+    const isCollapse = computed(() => {
+      return !store.getters.sidebar.opened
+    })
+
+    return { routes, activeMenu, showLogo, variableSty, isCollapse }
   },
 })
 </script>

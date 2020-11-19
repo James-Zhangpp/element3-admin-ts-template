@@ -28,12 +28,24 @@
           {{ scope.row.pageviews }}
         </template>
       </el-table-column>
-      <el-table-column class-name="status-col" label="Status" width="110" align="center">
+      <el-table-column
+        class-name="status-col"
+        label="Status"
+        width="110"
+        align="center"
+      >
         <template #default="scope">
-          <el-tag :type="scope.row.status | statusFilter">{{ scope.row.status }}</el-tag>
+          <el-tag :type="scope.row.status | statusFilter">{{
+            scope.row.status
+          }}</el-tag>
         </template>
       </el-table-column>
-      <el-table-column align="center" prop="created_at" label="Display_time" width="200">
+      <el-table-column
+        align="center"
+        prop="created_at"
+        label="Display_time"
+        width="200"
+      >
         <template #default="scope">
           <i class="el-icon-time" />
           <span>{{ scope.row.display_time }}</span>
@@ -43,21 +55,11 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent } from 'vue'
 import { getList } from '@/api/table'
 
 export default defineComponent({
-  filters: {
-    statusFilter(status) {
-      const statusMap = {
-        published: 'success',
-        draft: 'gray',
-        deleted: 'danger',
-      }
-      return statusMap[status]
-    },
-  },
   data() {
     return {
       list: null,
@@ -70,10 +72,18 @@ export default defineComponent({
   methods: {
     fetchData() {
       this.listLoading = true
-      getList().then(response => {
+      getList().then((response) => {
         this.list = response.data.items
         this.listLoading = false
       })
+    },
+    statusFilter(status) {
+      const statusMap = {
+        published: 'success',
+        draft: 'gray',
+        deleted: 'danger',
+      }
+      return statusMap[status]
     },
   },
 })

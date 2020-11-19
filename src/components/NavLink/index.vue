@@ -20,17 +20,19 @@ import { RouterLink } from 'vue-router'
 
 export default defineComponent({
   name: 'AppLink',
-
+  // todo
   props: {
     // add @ts-ignore if using TypeScript
     ...RouterLink.props,
     inactiveClass: String,
   },
-
   computed: {
     isExternalLink() {
       return typeof this.to === 'string' && this.to.startsWith('http')
     },
+  },
+  mounted() {
+    console.log('test', ...RouterLink.props)
   },
 })
 </script>

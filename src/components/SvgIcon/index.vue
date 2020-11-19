@@ -1,12 +1,17 @@
 <template>
-  <div v-if="isExternal" :style="styleExternalIcon" class="svg-external-icon svg-icon" v-bind="$attrs" />
+  <div
+    v-if="isExternalLink"
+    :style="styleExternalIcon"
+    class="svg-external-icon svg-icon"
+    v-bind="$attrs"
+  />
   <svg v-else :class="svgClass" aria-hidden="true" v-bind="$attrs">
     <use :xlink:href="iconName" />
   </svg>
 </template>
 
-<script>
-import { defineComponent } from 'vue'
+<script lang="ts">
+import { defineComponent, computed, toRefs } from 'vue'
 // doc: https://panjiachen.github.io/vue-element-admin-site/feature/component/svg-icon.html#usage
 import { isExternal } from '@/utils/validate'
 
@@ -22,26 +27,33 @@ export default defineComponent({
       default: '',
     },
   },
-  computed: {
-    isExternal() {
-      return isExternal(this.iconClass)
-    },
-    iconName() {
-      return `#icon-${this.iconClass}`
-    },
-    svgClass() {
-      if (this.className) {
-        return 'svg-icon ' + this.className
+  setup(props) {
+    const { iconClass, className } = toRefs(props)
+
+    const isExternalLink = computed(() => {
+      return isExternal(iconClass.value)
+    })
+
+    const iconName = computed(() => {
+      return `#icon-${iconClass.value}`
+    })
+
+    const svgClass = computed(() => {
+      if (className.value) {
+        return 'svg-icon ' + className.value
       } else {
         return 'svg-icon'
       }
-    },
-    styleExternalIcon() {
+    })
+
+    const styleExternalIcon = computed(() => {
       return {
-        mask: `url(${this.iconClass}) no-repeat 50% 50%`,
-        '-webkit-mask': `url(${this.iconClass}) no-repeat 50% 50%`,
+        mask: `url(${iconClass.value}) no-repeat 50% 50%`,
+        '-webkit-mask': `url(${iconClass.value}) no-repeat 50% 50%`,
       }
-    },
+    })
+
+    return { isExternalLink, iconName, svgClass, styleExternalIcon }
   },
 })
 </script>
@@ -57,7 +69,7 @@ export default defineComponent({
 
 .svg-external-icon {
   background-color: currentColor;
-  mask-size: cover!important;
+  mask-size: cover !important;
   display: inline-block;
 }
 </style>

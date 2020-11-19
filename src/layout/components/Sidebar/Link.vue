@@ -4,8 +4,8 @@
   </component>
 </template>
 
-<script>
-import { defineComponent } from 'vue'
+<script lang="ts">
+import { defineComponent, toRefs, computed } from 'vue'
 import { isExternal } from '@/utils/validate'
 
 export default defineComponent({
@@ -15,20 +15,21 @@ export default defineComponent({
       required: true,
     },
   },
-  computed: {
-    isExternal() {
-      return isExternal(this.to)
-    },
-    type() {
-      if (this.isExternal) {
+  setup(props) {
+    const { to } = toRefs(props)
+    const isExternalLink = computed(() => {
+      return isExternal(to.value)
+    })
+
+    const type = computed(() => {
+      if (isExternalLink.value) {
         return 'a'
       }
       return 'router-link'
-    },
-  },
-  methods: {
-    linkProps(to) {
-      if (this.isExternal) {
+    })
+
+    const linkProps = () => {
+      if (isExternalLink.value) {
         return {
           href: to,
           target: '_blank',
@@ -38,7 +39,9 @@ export default defineComponent({
       return {
         to: to,
       }
-    },
+    }
+
+    return { type, linkProps }
   },
 })
 </script>

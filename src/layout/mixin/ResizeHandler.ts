@@ -16,13 +16,7 @@ export default defineComponent({
         store.dispatch('app/closeSideBar', { withoutAnimation: false })
       }
     })
-    // watch: {
-    //   $route(route) {
-    //     if (this.device === 'mobile' && this.sidebar.opened) {
-    //       store.dispatch('app/closeSideBar', { withoutAnimation: false })
-    //     }
-    //   },
-    // },
+
     onBeforeMount(() => {
       window.addEventListener('resize', $_resizeHandler)
     })
@@ -57,43 +51,4 @@ export default defineComponent({
 
     return { $_isMobile, $_resizeHandler }
   },
-
-  // watch: {
-  //   $route(route) {
-  //     if (this.device === 'mobile' && this.sidebar.opened) {
-  //       store.dispatch('app/closeSideBar', { withoutAnimation: false })
-  //     }
-  //   },
-  // },
-  // beforeMount() {
-  //   window.addEventListener('resize', this.$_resizeHandler)
-  // },
-  // beforeUnmount() {
-  //   window.removeEventListener('resize', this.$_resizeHandler)
-  // },
-  // mounted() {
-  //   const isMobile = this.$_isMobile()
-  //   if (isMobile) {
-  //     store.dispatch('app/toggleDevice', 'mobile')
-  //     store.dispatch('app/closeSideBar', { withoutAnimation: true })
-  //   }
-  // },
-  // methods: {
-  //   // use $_ for mixins properties
-  //   // https://vuejs.org/v2/style-guide/index.html#Private-property-names-essential
-  //   $_isMobile() {
-  //     const rect = body.getBoundingClientRect()
-  //     return rect.width - 1 < WIDTH
-  //   },
-  //   $_resizeHandler() {
-  //     if (!document.hidden) {
-  //       const isMobile = this.$_isMobile()
-  //       store.dispatch('app/toggleDevice', isMobile ? 'mobile' : 'desktop')
-
-  //       if (isMobile) {
-  //         store.dispatch('app/closeSideBar', { withoutAnimation: true })
-  //       }
-  //     }
-  //   },
-  // },
 })

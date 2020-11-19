@@ -28,7 +28,7 @@ import Layout from '@/layout/index.vue'
  * all roles can be accessed
  */
 
-type Route = {
+interface Route {
   hidden?: Boolean
 }
 
