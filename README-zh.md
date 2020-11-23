@@ -1,15 +1,16 @@
 # element3-admin-ts-template
 
-## Overview
+## 总览
 
-> A minimal vue typescript admin template with element-ui & axios & svgicon & permission control & lint.
+> 这是一个极简的利用 vue 结合 element3 搭建的管理后台。它只包含了 Element3  & axios & iconfont & permission control & lint，这些搭建后台必要的东西。
 
 
-## Screenshots
+## 截图/动图
 
 ![demo](./demo/demo.gif)
 
-## Related Project
+
+## 相关项目
 
 - [element3-admin-template](https://github.com/hug-sun/element3-admin-template)
 
@@ -18,47 +19,43 @@
 - [element3-admin-ts-template](https://github.com/hug-sun/element3-admin-ts-template.git)
 
 
-## Project setup
+## 如何设置以及启动项目
+
+### 安装依赖
 
 ```bash
-npm install
+npm run install
 ```
 
-### Compiles and hot-reloads for development
+### 启动本地开发环境（自带热启动）
 
 ```bash
 npm run serve
 ```
 
-### Compiles and minifies for production
+### 构建生产环境 (自带压缩)
 
 ```bash
 npm run build
 ```
 
-### Lints and fixes files
+### 代码格式检查以及自动修复
 
 ```bash
 npm run lint
 ```
 
-### Run your unit tests
+### 运行单元测试
 
 ```bash
 npm run test:unit
 ```
 
-### Run your end-to-end tests
+### 自定义 Vue 配置
 
-```bash
-npm run test:e2e
-```
+看这里 [Configuration Reference](https://cli.vuejs.org/config/).
 
-### Customize Vue configuration
-
-See [Configuration Reference](https://cli.vuejs.org/config/).
-
-## Browsers support
+## 浏览器支持
 
 Modern browsers and Internet Explorer 10+.
 
