@@ -1,5 +1,7 @@
 # element3-admin-ts-template
 
+[English](./README.md) | 简体中文
+
 ## 总览
 
 > 这是一个极简的利用 vue 结合 element3 搭建的管理后台。它只包含了 Element3  & axios & iconfont & permission control & lint，这些搭建后台必要的东西。

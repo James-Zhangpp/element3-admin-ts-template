@@ -49,10 +49,40 @@
 
 <script lang="ts">
 // todo
-import { defineComponent } from 'vue'
+import { defineComponent, reactive, toRefs } from 'vue'
 import { useMessage } from 'element3'
 const Message = useMessage()
+
 export default defineComponent({
+  // setup(){
+  //   const Message = useMessage()
+  //    const state = reactive({
+  //      form: {
+  //       name: '',
+  //       region: '',
+  //       date1: '',
+  //       date2: '',
+  //       delivery: false,
+  //       type: [],
+  //       resource: '',
+  //       desc: '',
+  //     },
+  //    })
+    
+  //   const onSubmit = () => {
+  //     Message('submit!')
+  //   }
+
+  //   const onCancel = () => {
+  //     Message({
+  //       message: 'cancel!',
+  //       type: 'warning',
+  //     })
+  //   }
+
+  //   return {...toRefs(state),onSubmit,onCancel}
+
+  // },
   data() {
     return {
       form: {

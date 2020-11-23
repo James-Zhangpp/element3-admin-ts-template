@@ -1,5 +1,7 @@
 # element3-admin-ts-template
 
+English | [简体中文](./README-zh.md)
+
 ## Overview
 
 > A minimal vue typescript admin template with element-ui & axios & svgicon & permission control & lint.
