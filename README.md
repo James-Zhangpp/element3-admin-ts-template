@@ -4,7 +4,7 @@ English | [简体中文](./README-zh.md)
 
 ## Overview
 
-> A minimal vue typescript admin template with element-ui & axios & svgicon & permission control & lint.
+> A minimal element3 admin typescript template with element3 & axios & svgicon & permission control & lint.
 
 
 ## Screenshots
